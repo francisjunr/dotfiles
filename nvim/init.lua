@@ -1,0 +1,8 @@
+require('francis.options')
+require('francis.plugins')
+require('francis.config.telescope')
+require('francis.config.nvim-cmp')
+require('francis.config.treesitter')
+require('francis.config.nvim-tree')
+require('francis.config.toggleterm')
+require('francis.keymaps')
