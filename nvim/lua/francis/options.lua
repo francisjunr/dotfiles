@@ -5,11 +5,13 @@
 vim.o.hlsearch = false
 
 -- Make line numbers default
-vim.wo.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
+-- set no line wrap
+vim.o.wrap = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
