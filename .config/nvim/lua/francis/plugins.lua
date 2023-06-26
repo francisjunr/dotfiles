@@ -39,8 +39,18 @@ require("lazy").setup({
   -- Detect tabstop and shiftwidth automatically
   "tpope/vim-sleuth",
 
+  -- navigaete between vim and tmux panes
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
   -- automatically close an open bracket
-  { "windwp/nvim-autopairs", opts = {} },
+  { "windwp/nvim-autopairs",  opts = {} },
+  -- automatically close and rename tags
+  { "windwp/nvim-ts-autotag", opts = {} },
+
+  -- show problems in code in a window below
+  "folke/trouble.nvim",
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   {
@@ -53,7 +63,7 @@ require("lazy").setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { "j-hui/fidget.nvim", opts = {} },
+      { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       "folke/neodev.nvim",
@@ -71,36 +81,37 @@ require("lazy").setup({
 
   -- Useful plugin to show you pending keybinds.
   { "folke/which-key.nvim",  opts = {} },
+
+  -- Adds git releated signs to the gutter, as well as utilities for managing changes
+  "lewis6991/gitsigns.nvim",
+
   {
-    -- Adds git releated signs to the gutter, as well as utilities for managing changes
-    "lewis6991/gitsigns.nvim",
-    opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = "+" },
-        change = { text = "~" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-      },
-    },
+    -- Colorscheme
+    "folke/tokyonight.nvim",
+    priority = 1000,
+    -- config = function()
+    --   vim.cmd.colorscheme("tokyonight-night")
+    -- end,
   },
 
-  -- {
-  --   -- Colorscheme
-  --   "folke/tokyonight.nvim",
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme("tokyonight-night")
-  --   end,
-  -- },
+  {
+    -- Colorscheme
+    "navarasu/onedark.nvim",
+    oopts = {
+      style = "darker",
+    },
+    priority = 1000,
+    -- config = function()
+    --   vim.cmd.colorscheme("onedark")
+    -- end,
+  },
   {
     -- Colorscheme
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = function()
       vim.cmd.colorscheme("gruvbox")
-    end
+    end,
   },
 
   {
@@ -166,20 +177,4 @@ require("lazy").setup({
 
   -- floating terminal window
   "akinsho/toggleterm.nvim",
-
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below automatically adds your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  --
-  --    An additional note is that if you only copied in the `init.lua`, you can just comment this line
-  --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
-  -- { import = 'custom.plugins' },
 }, {})

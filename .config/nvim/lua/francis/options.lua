@@ -16,7 +16,8 @@ vim.cmd('syntax on')
 
 -- Enable folds
 vim.cmd('set foldmethod=indent')
--- vim.cmd('set nofoldenable')
+-- disable fold on opening a file
+vim.cmd('set nofoldenable')
 
 -- set no line wrap
 vim.o.wrap = false

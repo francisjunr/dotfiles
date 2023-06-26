@@ -5,6 +5,7 @@ end
 
 toggleterm.setup({
 	size = 15,
+	on_open = SetNvimtreeWhenOpenTerm,
 	open_mapping = [[<c-\>]],
 	hide_numbers = true,
 	shade_filetypes = {},
@@ -25,6 +26,17 @@ toggleterm.setup({
 		},
 	},
 })
+
+function SetNvimtreeWhenOpenTerm(terminal)
+  local nvimtree = require "nvim-tree"
+  local nvimtree_view = require "nvim-tree.view"
+  if nvimtree_view.is_visible() and terminal.direction == "horizontal" then
+    local nvimtree_width = vim.fn.winwidth(nvimtree_view.get_winnr())
+    nvimtree.toggle()
+    nvimtree_view.View.width = nvimtree_width
+    nvimtree.toggle(false, true)
+  end
+end
 
 function _G.set_terminal_keymaps()
 	local opts = { noremap = true }
