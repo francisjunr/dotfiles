@@ -1,5 +1,4 @@
 -- [[ Basic Keymaps ]]
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -10,7 +9,8 @@
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set({ "n", "i", "v", "x", "c" }, "lk", "<Esc>", { silent = true })
+vim.keymap.set({ "i", "v", "x", "c" }, "lk", "<Esc>", { silent = true })
+vim.keymap.set({ "i", "v", "x", "c" }, "kl", "<Esc>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -21,35 +21,50 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "<", "<gv")
 
 -- get next search result in the center of the screen
-vim.keymap.set("n", "n", "nzz")
-vim.keymap.set("n", "N", "Nzz")
+-- vim.keymap.set("n", "n", "nzz")
+-- vim.keymap.set("n", "N", "Nzz")
+-- vim.keymap.set("n", "*", "*zz")
+-- vim.keymap.set("n", "#", "#zz")
+
+-- center cursor when navigating using ctrl-d and ctrl-u
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- nvim-tree keymaps
 vim.keymap.set(
   "n",
   "<leader>e",
-  ":NvimTreeToggle <Cr>",
+  ":NvimTreeToggle<Cr>",
   { noremap = true, silent = true, desc = "[e] Open/Close file explorer (nvim-tree)" }
 )
 
 -- Open vim fugitive (git plugin)
-vim.keymap.set("n", "<leader>g", ":below Git <Cr>", { noremap = true, silent = true, desc = "[g]it overview" })
+vim.keymap.set("n", "<leader>gs", ":Git<Cr>", { noremap = true, silent = true, desc = "[g]it overview" })
+
+--  Paste form the  under-score register
+vim.keymap.set("v", "<leader>p", '"_dP', { noremap = true, desc = "[P]aste from the under-score register" })
 
 -- Better window navigation
 vim.keymap.set("n", "<C-c>", "<C-w>c", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-h>", ":TmuxNavigateLeft <Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-j>", ":TmuxNavigateDown <Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-k>", ":TmuxNavigateUp <Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-l>", ":TmuxNavigateRight <Cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-h>", ":TmuxNavigateLeft<Cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-j>", ":TmuxNavigateDown<Cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-k>", ":TmuxNavigateUp<Cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-l>", ":TmuxNavigateRight<Cr>", { noremap = true, silent = true })
+
+-- Better window resizing
+vim.keymap.set("n", "<C-.>", ":resize +5<Cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-,>", ":resize -5<Cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-=>", ":vertilal resize +5<Cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-->", ":vertical resize -5<Cr>", { noremap = true, silent = true })
 
 -- diagnostics window (trouble.nvim) related keymaps
-vim.keymap.set("n","<leader>xx", ":TroubleToggle <cr>", {noremap = true, silent = true, desc = "Trouble window"})
+vim.keymap.set("n", "<leader>tt", ":TroubleToggle<Cr>", { noremap = true, silent = true, desc = "Trouble window" })
 
 -- Better buffer navigation
-vim.keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev <Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext <Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>w", ":Bdelete! <Cr>", { noremap = true, silent = true, desc = "[x] Delete buffer" })
-vim.keymap.set("n", "<leader>W", ":%bd <Cr>")
+vim.keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<Cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<Cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>x", ":Bdelete!<Cr>", { noremap = true, silent = true, desc = "[x] Delete buffer" })
+vim.keymap.set("n", "<leader>X", ":bufdo Bdelete<Cr>")
 
 -- See `:help telescope.builtin`
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
@@ -69,13 +84,13 @@ vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc
 vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
 -- foramt
-vim.keymap.set("n", "<leader>f", ":Format <Cr>", { silent = true, desc = "[F]ormat Document" })
+-- vim.keymap.set("n", "<leader>f", ":Format<Cr>", { silent = true, desc = "[F]ormat Document" })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

@@ -105,11 +105,11 @@ nvim_tree.setup({
       error = "",
     },
   },
-  update_focused_file = {
-    enable = true,
-    update_cwd = true,
-    ignore_list = {},
-  },
+  -- update_focused_file = {
+  --   enable = true,
+  --   update_cwd = true,
+  --   ignore_list = {},
+  -- },
   git = {
     enable = true,
     ignore = true,
@@ -118,9 +118,15 @@ nvim_tree.setup({
   view = {
     width = 30,
     float = {
+      enable = false,
+      quit_on_focus_loss = true,
       open_win_config = {
-        height = 30,
+        relative = "editor",
+        border = "rounded",
         width = 30,
+        height = 30,
+        row = 1,
+        col = 1,
       },
     },
     hide_root_folder = false,
