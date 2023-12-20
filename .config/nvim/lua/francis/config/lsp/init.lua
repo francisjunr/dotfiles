@@ -31,13 +31,13 @@ local on_attach = function(_, bufnr)
 	end, "[W]orkspace [L]ist Folders")
 
 	-- format document using lsp
-	nmap("<leader>f", function()
+	vim.keymap.set({ "n", "v" }, "<leader>f", function()
 		vim.lsp.buf.format({
 			filter = function(client)
 				return client.name ~= "tsserver"
 			end,
 		})
-	end, "[F]ormat buffer using lsp")
+	end, { buffer = bufnr, desc = "[F]ormat buffer using lsp" })
 end
 
 -- don't show inline diagnostics
@@ -66,6 +66,16 @@ local servers = {
 		diagnostics = {
 			-- remove unused variable diagnostic messages from tsserver
 			ignoredCodes = { 6133 },
+		},
+	},
+	jsonls = {
+		settings = {
+			json = {
+				format = {
+					enable = true,
+				},
+			},
+			validate = { enable = true },
 		},
 	},
 	lua_ls = {

@@ -3,13 +3,6 @@ if not status_ok then
   return
 end
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-  return
-end
-
--- local tree_cb = nvim_tree_config.nvim_tree_callback
-
 local function on_attach(bufnr)
   local api = require("nvim-tree.api")
 
@@ -105,11 +98,11 @@ nvim_tree.setup({
       error = "",
     },
   },
-  -- update_focused_file = {
-  --   enable = true,
-  --   update_cwd = true,
-  --   ignore_list = {},
-  -- },
+  update_focused_file = {
+    enable = true,
+    update_cwd = true,
+    ignore_list = {},
+  },
   git = {
     enable = true,
     ignore = true,
@@ -129,19 +122,9 @@ nvim_tree.setup({
         col = 1,
       },
     },
-    hide_root_folder = false,
     side = "left",
-    -- options are depricated in favor of the on_attach function
-    -- mappings = {
-    --   custom_only = false,
-    --   list = {
-    --     { key = { "l", "<CR>", "o" }, cb = tree_cb("edit") },
-    --     { key = "h",                  cb = tree_cb("close_node") },
-    --     { key = "v",                  cb = tree_cb("vsplit") },
-    --   },
-    -- },
     number = false,
-    relativenumber = false,
+    relativenumber = true,
   },
   actions = {
     open_file = {
@@ -166,10 +149,10 @@ nvim_tree.setup({
     },
     icons = {
       show = {
-        file = true,
+        file = false,
         folder = true,
-        folder_arrow = true,
-        git = true,
+        folder_arrow = false,
+        git = false,
       },
       glyphs = {
         default = "",
@@ -184,11 +167,16 @@ nvim_tree.setup({
           ignored = "◌",
         },
         folder = {
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
+          default = "/",
+          open = "/",
+          empty = "/",
+          empty_open = "/",
+          symlink = "/",
+          -- default = "",
+          -- open = "",
+          -- empty = "",
+          -- empty_open = "",
+          -- symlink = "",
         },
       },
     },

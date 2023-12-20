@@ -12,9 +12,14 @@
 vim.keymap.set({ "i", "v", "x", "c" }, "lk", "<Esc>", { silent = true })
 vim.keymap.set({ "i", "v", "x", "c" }, "kl", "<Esc>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Move blocks of text up and down in visual mode
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- remap to keep vim in visual mode when using '>' in visual mode
 vim.keymap.set("v", ">", ">gv")
@@ -39,7 +44,7 @@ vim.keymap.set(
 )
 
 -- Open vim fugitive (git plugin)
-vim.keymap.set("n", "<leader>gs", ":Git<Cr>", { noremap = true, silent = true, desc = "[g]it overview" })
+-- vim.keymap.set("n", "<leader>gs", ":Git<Cr>", { noremap = true, silent = true, desc = "[g]it overview" })
 
 --  Paste form the  under-score register
 vim.keymap.set("v", "<leader>p", '"_dP', { noremap = true, desc = "[P]aste from the under-score register" })
@@ -91,6 +96,29 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous dia
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+
+-- Fugitive toggle
+local function showFugitiveGit()
+  if vim.fn.FugitiveHead() ~= "" then
+    vim.cmd([[
+    Git
+    " wincmd H  " Open Git window in vertical split
+    " setlocal winfixwidth
+    " vertical resize 31
+    " setlocal winfixwidth
+    setlocal nonumber
+    setlocal norelativenumber
+    ]])
+  end
+end
+local function toggleFugitiveGit()
+  if vim.fn.buflisted(vim.fn.bufname("fugitive:///*/.git//$")) ~= 0 then
+    vim.cmd([[ execute ":bdelete" bufname('fugitive:///*/.git//$') ]])
+  else
+    showFugitiveGit()
+  end
+end
+vim.keymap.set("n", "<leader>gs", toggleFugitiveGit, { desc = "toggle fugitive window" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

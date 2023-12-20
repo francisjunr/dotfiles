@@ -1,8 +1,15 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Set highlight on search
 vim.o.hlsearch = false
+
+-- Set Scroll offset
+-- vim.o.scrolloff = 10
 
 -- Make line numbers default
 vim.o.number = true
@@ -16,6 +23,9 @@ vim.o.mouse = "a"
 
 -- Enable Syntax
 vim.cmd("syntax on")
+
+-- create release command
+vim.cmd([[command! -nargs=+ Release !release <args>]])
 
 -- Enable folds
 vim.cmd("set foldmethod=indent")
@@ -51,6 +61,10 @@ vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
+
+-- Make background transperent
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true

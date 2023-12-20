@@ -117,14 +117,13 @@ require("lazy").setup({
   -- Set lualine as statusline
   "nvim-lualine/lualine.nvim",
 
+  -- Add indentation guides even on blank lines
   {
-    -- Add indentation guides even on blank lines
     "lukas-reineke/indent-blankline.nvim",
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
+    main = "ibl",
     opts = {
-      char = "┊",
-      show_trailing_blankline_indent = false,
+      scope = { enabled = false },
+      indent = { char = "┊" },
     },
   },
 
@@ -162,8 +161,14 @@ require("lazy").setup({
   { "kyazdani42/nvim-web-devicons", opts = {} },
 
   -- file explorer
-  "nvim-tree/nvim-tree.lua",
+  {
+    "nvim-tree/nvim-tree.lua",
+    lazy = false,
+    -- dependencies = {
+    --   "nvim-tree/nvim-web-devicons",
+    -- },
+  },
 
-  -- floating terminal window
+  -- configurable terminal window
   "akinsho/toggleterm.nvim",
 }, {})
