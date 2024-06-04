@@ -39,7 +39,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set(
   "n",
   "<leader>e",
-  ":NvimTreeToggle<Cr>",
+  vim.cmd.NvimTreeToggle,
   { noremap = true, silent = true, desc = "[e] Open/Close file explorer (nvim-tree)" }
 )
 
@@ -51,25 +51,32 @@ vim.keymap.set("v", "<leader>p", '"_dP', { noremap = true, desc = "[P]aste from 
 
 -- Better window navigation
 vim.keymap.set("n", "<C-c>", "<C-w>c", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-h>", ":TmuxNavigateLeft<Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-j>", ":TmuxNavigateDown<Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-k>", ":TmuxNavigateUp<Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-l>", ":TmuxNavigateRight<Cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-h>", vim.cmd.TmuxNavigateLeft, { noremap = true, silent = true })
+vim.keymap.set("n", "<C-j>", vim.cmd.TmuxNavigateDown, { noremap = true, silent = true })
+vim.keymap.set("n", "<C-k>", vim.cmd.TmuxNavigateUp, { noremap = true, silent = true })
+vim.keymap.set("n", "<C-l>", vim.cmd.TmuxNavigateRight, { noremap = true, silent = true })
 
+-- [ TODO ]
 -- Better window resizing
-vim.keymap.set("n", "<C-.>", ":resize +5<Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-,>", ":resize -5<Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-=>", ":vertilal resize +5<Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-->", ":vertical resize -5<Cr>", { noremap = true, silent = true })
-
+-- vim.keymap.set("n", "<leader>.", function()
+--   vim.cmd("resize +5")
+-- end, { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>,", function()
+--   vim.cmd("resize -5")
+-- end, { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>=", function()
+--   vim.cmd("vertical resize +5")
+-- end, { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>-", function()
+--   vim.cmd("vertical resize -5")
+-- end, { noremap = true, silent = true })
 -- diagnostics window (trouble.nvim) related keymaps
-vim.keymap.set("n", "<leader>tt", ":TroubleToggle<Cr>", { noremap = true, silent = true, desc = "Trouble window" })
+-- vim.keymap.set("n", "<leader>tt", vim.cmd.TroubleToggle, { noremap = true, silent = true, desc = "Trouble window" })
 
--- Better buffer navigation
-vim.keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<Cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>x", ":Bdelete!<Cr>", { noremap = true, silent = true, desc = "[x] Delete buffer" })
-vim.keymap.set("n", "<leader>X", ":bufdo Bdelete<Cr>")
+vim.keymap.set("n", "<leader>x", vim.cmd.bdelete, { noremap = true, silent = true, desc = "[x] Delete buffer" })
+vim.keymap.set("n", "<leader>X", function()
+  vim.cmd.bufdo("bdelete")
+end, { noremap = true, silent = true, desc = "[X] Delete all buffers" })
 
 -- See `:help telescope.builtin`
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
@@ -82,7 +89,13 @@ vim.keymap.set("n", "<leader>/", function()
   }))
 end, { desc = "[/] Fuzzily search in current buffer" })
 
-vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
+-- vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>sf", function()
+  require("telescope.builtin").find_files({ hidden = false })
+end, { desc = "[H]idden [F]iles" })
+vim.keymap.set("n", "<leader>hf", function()
+  require("telescope.builtin").find_files({ hidden = true })
+end, { desc = "[H]idden [F]iles" })
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
@@ -112,10 +125,10 @@ local function showFugitiveGit()
   end
 end
 local function toggleFugitiveGit()
-  if vim.fn.buflisted(vim.fn.bufname("fugitive:///*/.git//$")) ~= 0 then
-    vim.cmd([[ execute ":bdelete" bufname('fugitive:///*/.git//$') ]])
-  else
+  if vim.fn.buflisted(vim.fn.bufname("fugitive:///*/.git//$")) == 0 then
     showFugitiveGit()
+  else
+    vim.cmd([[ execute ":bdelete" bufname('fugitive:///*/.git//$') ]])
   end
 end
 vim.keymap.set("n", "<leader>gs", toggleFugitiveGit, { desc = "toggle fugitive window" })

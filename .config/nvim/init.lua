@@ -1,7 +1,7 @@
 require("francis.options")
 require("francis.plugins")
 require("francis.config.lsp")
-require("francis.config.bufferLine")
+require("francis.config.colors")
 require("francis.config.gitsigns")
 require("francis.config.lualine")
 require("francis.config.nvim-cmp")

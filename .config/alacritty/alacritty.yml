@@ -1,6 +1,6 @@
 window:
   # Background transperency
-  opacity: 0.8
+  opacity: 1
   # Window title
   title: Terminal
   # Allow terminal applications to change Alacritty's window title.

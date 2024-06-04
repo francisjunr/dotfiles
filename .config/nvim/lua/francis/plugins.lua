@@ -32,9 +32,11 @@ require("lazy").setup({
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
 
+  -- Adds git releated signs to the gutter, as well as utilities for managing changes
+  "lewis6991/gitsigns.nvim",
+
   -- Bufferline and delete buffer using Bdelete
-  "akinsho/bufferline.nvim",
-  "moll/vim-bbye",
+  -- "akinsho/bufferline.nvim",
 
   -- Detect tabstop and shiftwidth automatically
   "tpope/vim-sleuth",
@@ -50,8 +52,17 @@ require("lazy").setup({
   { "windwp/nvim-ts-autotag", opts = {} },
 
   -- show problems in code in a window below
-  "folke/trouble.nvim",
+  -- "folke/trouble.nvim",
 
+  -- markdown preview
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
   -- NOTE: This is where your plugins related to LSP can be installed.
   {
     -- LSP Configuration & Plugins
@@ -82,29 +93,26 @@ require("lazy").setup({
   -- Useful plugin to show you pending keybinds.
   { "folke/which-key.nvim",          opts = {} },
 
-  -- Adds git releated signs to the gutter, as well as utilities for managing changes
-  "lewis6991/gitsigns.nvim",
-
-  {
-    -- Colorscheme
-    "folke/tokyonight.nvim",
-    priority = 1000,
-    -- config = function()
-    --   vim.cmd.colorscheme("tokyonight-night")
-    -- end,
-  },
-
-  {
-    -- Colorscheme
-    "navarasu/onedark.nvim",
-    oopts = {
-      style = "darker",
-    },
-    priority = 1000,
-    -- config = function()
-    --   vim.cmd.colorscheme("onedark")
-    -- end,
-  },
+  -- {
+  --   -- Colorscheme
+  --   "folke/tokyonight.nvim",
+  --   priority = 1000,
+  --   -- config = function()
+  --   --   vim.cmd.colorscheme("tokyonight-night")
+  --   -- end,
+  -- },
+  --
+  -- {
+  --   -- Colorscheme
+  --   "navarasu/onedark.nvim",
+  --   oopts = {
+  --     style = "darker",
+  --   },
+  --   priority = 1000,
+  --   -- config = function()
+  --   --   vim.cmd.colorscheme("onedark")
+  --   -- end,
+  -- },
   {
     -- Colorscheme
     "ellisonleao/gruvbox.nvim",
@@ -158,7 +166,7 @@ require("lazy").setup({
   },
 
   -- add fancy icons support
-  { "kyazdani42/nvim-web-devicons", opts = {} },
+  -- { "kyazdani42/nvim-web-devicons", opts = {} },
 
   -- file explorer
   {
@@ -169,6 +177,25 @@ require("lazy").setup({
     -- },
   },
 
-  -- configurable terminal window
+  -- configurable terminal windoW
   "akinsho/toggleterm.nvim",
-}, {})
+}, {
+  -- get rid of the icons in the lazy menu (:Lazy)
+  ui = {
+    icons = {
+      cmd = "",
+      config = "",
+      event = "",
+      ft = "",
+      init = "",
+      keys = "",
+      plugin = "",
+      runtime = "",
+      require = "",
+      source = "",
+      start = "",
+      task = "",
+      lazy = "",
+    },
+  },
+})

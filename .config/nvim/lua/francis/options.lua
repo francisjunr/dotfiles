@@ -2,8 +2,8 @@
 -- See `:help vim.o`
 
 -- Disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -16,7 +16,10 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 -- All horizontal split windows open below current window
-vim.o.splitbelow = true
+-- vim.o.splitbelow = true
+
+-- Shows live what a command is about to do to the buffer in a split in real-time
+-- vim.o.inccommand = "split"
 
 -- Enable mouse mode
 vim.o.mouse = "a"
@@ -24,13 +27,21 @@ vim.o.mouse = "a"
 -- Enable Syntax
 vim.cmd("syntax on")
 
+-- Highlight the line on which the cursor is
+vim.o.cursorline = true
+
+-- Global status line
+vim.o.laststatus = 3
+
 -- create release command
 vim.cmd([[command! -nargs=+ Release !release <args>]])
 
 -- Enable folds
 vim.cmd("set foldmethod=indent")
+
 -- disable fold on opening a file
 vim.cmd("set nofoldenable")
+
 -- dont fold all folds recursively when applying fold for the first time after opening a file
 vim.o.foldlevel = 100
 
@@ -78,4 +89,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
   group = highlight_group,
   pattern = "*",
+})
+
+-- Function to change the working directory to the directory opened with Neovim
+local function change_directory()
+  local args = vim.fn.argv()
+  if #args > 0 and vim.fn.isdirectory(args[1]) == 1 then
+    vim.cmd("cd " .. args[1])
+  end
+end
+
+-- Autocommand to run the function on VimEnter
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = change_directory,
 })
