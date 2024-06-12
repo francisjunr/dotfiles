@@ -29,14 +29,14 @@ toggleterm.setup({
 })
 
 function _G.set_terminal_keymaps()
-	local opts = { noremap = true }
-	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "lk", [[<C-\><C-n>]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "kl", [[<C-\><C-n>]], opts)
-	vim.api.nvim_buf_set_keymap(0, "n", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
-	vim.api.nvim_buf_set_keymap(0, "n", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
-	vim.api.nvim_buf_set_keymap(0, "n", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
-	vim.api.nvim_buf_set_keymap(0, "n", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
+	local opts = { noremap = true, buffer = 0 }
+	vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+	vim.keymap.set("t", "lk", [[<C-\><C-n>]], opts)
+	vim.keymap.set("t", "kl", [[<C-\><C-n>]], opts)
+	vim.keymap.set("n", "<C-h>", vim.cmd.TmuxNavigateLeft, opts)
+	vim.keymap.set("n", "<C-j>", vim.cmd.TmuxNavigateDown, opts)
+	vim.keymap.set("n", "<C-k>", vim.cmd.TmuxNavigateUp, opts)
+	vim.keymap.set("n", "<C-l>", vim.cmd.TmuxNavigateRight, opts)
 end
 
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
