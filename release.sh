@@ -2,9 +2,9 @@
 if [ $# -eq 0 ]
   then
     echo "error: tag not provided"
+    exit
 fi
 
-tag=$1
 for i in $@
 do
 	echo "pushing $i"

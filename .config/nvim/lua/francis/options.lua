@@ -15,6 +15,10 @@ vim.o.hlsearch = false
 vim.o.number = true
 vim.o.relativenumber = true
 
+-- Set each indentation 2 spaces and tab output 2 spaces
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+
 -- All horizontal split windows open below current window
 -- vim.o.splitbelow = true
 
