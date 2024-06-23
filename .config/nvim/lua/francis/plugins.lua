@@ -179,6 +179,17 @@ require("lazy").setup({
 
   -- configurable terminal windoW
   "akinsho/toggleterm.nvim",
+
+  -- obsidian nvim integration
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
 }, {
   -- get rid of the icons in the lazy menu (:Lazy)
   ui = {

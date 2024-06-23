@@ -25,6 +25,9 @@ vim.o.tabstop = 2
 -- Shows live what a command is about to do to the buffer in a split in real-time
 -- vim.o.inccommand = "split"
 
+-- For markdown ui features of obsidian.nvim
+vim.o.conceallevel = 1
+
 -- Enable mouse mode
 vim.o.mouse = "a"
 

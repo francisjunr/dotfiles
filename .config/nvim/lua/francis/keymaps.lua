@@ -133,18 +133,5 @@ local function toggleFugitiveGit()
 end
 vim.keymap.set("n", "<leader>gs", toggleFugitiveGit, { desc = "[G]it [S]tatus" })
 
--- Notes review remaps
--- Open all notes in the ram folder
-vim.keymap.set("n", "<leader>nr", ":args ram/*<CR>", { silent = true, desc = "[N]otes [R]eview" })
--- Move note to pipe folder
-vim.keymap.set(
-  "n",
-  "<leader>na",
-  ":!mv '%:p' '/Users/francisjr/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes/pipe'<CR>:bd<cr>",
-  { silent = true, desc = "[N]ote [A]dd" }
-)
--- Delete note
-vim.keymap.set("n", "<leader>nd", ":!rm '%:p'<cr>:bd<cr>", { silent = true })
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
