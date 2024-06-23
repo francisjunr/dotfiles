@@ -1,6 +1,9 @@
 -- Create new notes
 vim.keymap.set("n", "<leader>nn", vim.cmd.ObsidianNew, { silent = true, desc = "[N]ew [N]ote" })
 
+-- Add template to empty buffer
+vim.keymap.set("n", "<leader>nt", vim.cmd.ObsidianTemplate, { silent = true, desc = "[N]ew [N]ote" })
+
 -- Notes review remaps
 -- Open all notes in the ram folder
 vim.keymap.set("n", "<leader>nr", ":args ram/*<CR>", { silent = true, desc = "[N]otes [R]eview" })
