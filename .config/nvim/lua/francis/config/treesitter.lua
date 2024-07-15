@@ -12,6 +12,8 @@ require("nvim-treesitter.configs").setup({
     "javascript",
     "graphql",
     "yaml",
+    "markdown",
+    "bash",
   },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)

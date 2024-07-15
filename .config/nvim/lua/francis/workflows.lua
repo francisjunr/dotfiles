@@ -2,7 +2,12 @@
 vim.keymap.set("n", "<leader>nn", vim.cmd.ObsidianNew, { silent = true, desc = "[N]ew [N]ote" })
 
 -- Add template to empty buffer
-vim.keymap.set("n", "<leader>nt", vim.cmd.ObsidianTemplate, { silent = true, desc = "[N]ew [N]ote" })
+vim.keymap.set("n", "<leader>nt", function()
+  vim.cmd("%d")
+  vim.cmd.ObsidianTemplate("note")
+end, { silent = true, desc = "[N]ote [T]emplate" })
+
+vim.keymap.set("n", "<leader>nd", vim.cmd.ObsidianToday, { silent = true, desc = "[N]ote [D]aily" })
 
 -- Notes review remaps
 -- Open all notes in the ram folder
@@ -14,5 +19,4 @@ vim.keymap.set(
   ":!mv '%:p' '/Users/francisjr/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes/pipe'<CR>:bd<cr>",
   { silent = true, desc = "[N]ote [A]dd" }
 )
--- Delete note
-vim.keymap.set("n", "<leader>nd", ":!rm '%:p'<cr>:bd<cr>", { silent = true, desc = "[N]ote [D]elete" })
+-- To delete a note use the <leader>dd shortcut that deletes the file in the current buffer

@@ -73,10 +73,15 @@ vim.keymap.set("n", "<C-l>", vim.cmd.TmuxNavigateRight, { noremap = true, silent
 -- diagnostics window (trouble.nvim) related keymaps
 -- vim.keymap.set("n", "<leader>tt", vim.cmd.TroubleToggle, { noremap = true, silent = true, desc = "Trouble window" })
 
+-- Buffers
+-- Close current buffer
 vim.keymap.set("n", "<leader>x", vim.cmd.bdelete, { noremap = true, silent = true, desc = "[x] Delete buffer" })
+-- Close all buffers
 vim.keymap.set("n", "<leader>X", function()
   vim.cmd.bufdo("bdelete")
 end, { noremap = true, silent = true, desc = "[X] Delete all buffers" })
+-- Delete file in current buffer
+vim.keymap.set("n", "<leader>dd", ":!rm '%:p'<cr>:bd<cr>", { silent = true, desc = "[D]elete file in current buffer" })
 
 -- See `:help telescope.builtin`
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })

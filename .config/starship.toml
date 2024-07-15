@@ -10,4 +10,4 @@ format = '[AWS: ($profile )($region )](bold-blue)'
 format = '[Branch: ($branch )](red)'
 
 [line_break]
-disabled = true
+disabled = false

@@ -33,6 +33,7 @@ local on_attach = function(_, bufnr)
 	-- format document using lsp
 	vim.keymap.set({ "n", "v" }, "<leader>f", function()
 		vim.lsp.buf.format({
+			-- don't format using tsserver
 			filter = function(client)
 				return client.name ~= "tsserver"
 			end,
@@ -84,6 +85,7 @@ local servers = {
 			telemetry = { enable = false },
 		},
 	},
+	marksman = {},
 }
 
 -- setup null ls

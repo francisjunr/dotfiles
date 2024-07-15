@@ -15,6 +15,22 @@ obsidian.setup({
       name = "notes",
       path = "/Users/francisjr/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes",
     },
+    {
+      name = "no-vault",
+      path = function()
+        -- alternatively use the CWD:
+        -- return assert(vim.fn.getcwd())
+        return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
+      end,
+      overrides = {
+        notes_subdir = vim.NIL, -- have to use 'vim.NIL' instead of 'nil'
+        new_notes_location = "current_dir",
+        templates = {
+          folder = vim.NIL,
+        },
+        disable_frontmatter = true,
+      },
+    },
   },
 
   -- Alternatively - and for backwards compatibility - you can set 'dir' to a single path instead of
@@ -30,7 +46,7 @@ obsidian.setup({
 
   daily_notes = {
     -- Optional, if you keep daily notes in a separate directory.
-    folder = "core/dailies",
+    folder = "ram",
     -- Optional, if you want to change the date format for the ID of daily notes.
     date_format = "%d-%m-%Y",
     -- Optional, if you want to change the date format of the default alias of daily notes.
@@ -104,8 +120,12 @@ obsidian.setup({
   ---@param spec { id: string, dir: obsidian.Path, title: string|? }
   ---@return string|obsidian.Path The full path to the new note.
   note_path_func = function(spec)
-    -- This is equivalent to the default behavior.
-    local path = spec.dir / tostring(spec.title:gsub("%s+", "_"))
+    local path = ""
+    if spec.title ~= nil then
+      path = spec.dir / tostring(spec.title:gsub("%s+", "_"):lower())
+    else
+      path = spec.dir / tostring(spec.id)
+    end
     return path:with_suffix(".md")
   end,
 
@@ -115,9 +135,7 @@ obsidian.setup({
   --  * "prepend_note_path", e.g. '[[foo-bar.md|Foo Bar]]'
   --  * "use_path_only", e.g. '[[foo-bar.md]]'
   -- Or you can set it to a function that takes a table of options and returns a string, like this:
-  wiki_link_func = function(opts)
-    return require("obsidian.util").wiki_link_id_prefix(opts)
-  end,
+  wiki_link_func = "use_alias_only",
 
   -- Optional, customize how markdown links are formatted.
   markdown_link_func = function(opts)
