@@ -1,6 +1,9 @@
 -- Create new notes
 vim.keymap.set("n", "<leader>nn", vim.cmd.ObsidianNew, { silent = true, desc = "[N]ew [N]ote" })
 
+-- Open note in obsidian
+vim.keymap.set("n", "<leader>on", vim.cmd.ObsidianOpen, { silent = true, desc = "[N]ew [N]ote" })
+
 -- Add template to empty buffer
 vim.keymap.set("n", "<leader>nt", function()
   vim.cmd("%d")
