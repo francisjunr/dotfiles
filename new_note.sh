@@ -3,6 +3,7 @@ if [ -z "$1" ]
     echo "Usage: note '<title of note>'"
     exit
 fi
-file_name=$(echo "$1" | tr ' ' '_').md
+
+file_name=$(echo "$1" | tr ' ' '_' | tr '[:upper:]' '[:lower:]').md
 cd '/Users/francisjr/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes/'
 nvim 'ram/'$file_name
