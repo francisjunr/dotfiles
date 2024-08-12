@@ -7,8 +7,8 @@ toggleterm.setup({
 	size = 15,
 	-- function to run on opening toggleterm
 	-- on_open = onOpenFunction,
-	open_mapping = [[<c-\>]],
-	hide_numbers = true,
+	open_mapping = [[<c-t>]],
+	hide_numbers = false,
 	shade_filetypes = {},
 	shade_terminals = true,
 	shading_factor = 2,
