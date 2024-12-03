@@ -11,3 +11,9 @@ format = '[Branch: ($branch )](red)'
 
 [line_break]
 disabled = false
+
+[time]
+time_format = "%T"
+format = " $time($style) "
+style = "bright-white"
+disabled = false
