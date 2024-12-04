@@ -6,11 +6,21 @@ vim.keymap.set("n", "<leader>on", vim.cmd.ObsidianOpen, { silent = true, desc = 
 
 -- Add template to empty buffer
 vim.keymap.set("n", "<leader>nt", function()
+  -- Delete contents of current buffer
   vim.cmd("%d")
+  -- Add the template named note to the buffer
   vim.cmd.ObsidianTemplate("note")
 end, { silent = true, desc = "[N]ote [T]emplate" })
 
-vim.keymap.set("n", "<leader>nd", vim.cmd.ObsidianToday, { silent = true, desc = "[N]ote [D]aily" })
+vim.keymap.set("n", "<leader>nd", function()
+  local dailyNoteNameFileName = os.date("%d-%m-%Y") .. "md"
+  if vim.fn.findfile(dailyNoteNameFileName).len() then
+    vim.cmd("echo '\n## $(date +%H:%M)' >> ./ram/$(date +%d-%m-%Y).md")
+    vim.cmd.ObsidianToday()
+  else
+    vim.cmd.ObsidianToday()
+  end
+end, { silent = true, desc = "[N]ote [D]aily" })
 
 -- Notes review remaps
 -- Open all notes in the ram folder
