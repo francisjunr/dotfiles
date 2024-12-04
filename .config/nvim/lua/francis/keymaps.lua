@@ -32,8 +32,8 @@ vim.keymap.set("v", "<", "<gv")
 -- vim.keymap.set("n", "#", "#zz")
 
 -- center cursor when navigating using ctrl-d and ctrl-u
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz")
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- nvim-tree keymaps
 vim.keymap.set(
