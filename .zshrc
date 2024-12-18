@@ -1,10 +1,23 @@
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+# Enable starship terminal prompt
 eval "$(starship init zsh)"
 
+# change the default vimrc location
+export XDG_CONFIG_HOME=~/personal/dotfiles/.config
 
-alias release='~/Documents/dotfiles/release.sh'
+# change the default kitty config location
+export KITTY_CONFIG_DIRECTORY=~/personal/dotfiles/.config/kitty
+
+# Aleases
+alias release='~/personal/dotfiles/release.sh'
 alias vim='nvim'
-alias notes='cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Notes'
+alias on='vim ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Notes'
+alias note='~/personal/dotfiles/new_note.sh'
+alias dn='~/personal/dotfiles/daily_note.sh'
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+
+# Auto-completion for zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
