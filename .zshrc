@@ -12,7 +12,7 @@ export KITTY_CONFIG_DIRECTORY=~/personal/dotfiles/.config/kitty
 # Aleases
 alias release='~/personal/dotfiles/release.sh'
 alias vim='nvim'
-alias on='vim ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Notes'
+alias on='vim ~/personal/Notes'
 alias note='~/personal/dotfiles/new_note.sh'
 alias dn='~/personal/dotfiles/daily_note.sh'
 
