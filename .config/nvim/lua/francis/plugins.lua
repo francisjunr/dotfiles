@@ -190,6 +190,9 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
     },
   },
+
+  -- enable physics based smooth scrolling
+  "yuttie/comfortable-motion.vim",
 }, {
   -- get rid of the icons in the lazy menu (:Lazy)
   ui = {
