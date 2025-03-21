@@ -7,6 +7,7 @@
 --   term_mode = "t",
 --   command_mode = "c",
 
+vim.keymap.set("n", "<leader>gl", ":G log --decorate <CR>", { silent = true, desc = "[G]it [L]og window" })
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ "i", "v", "x", "c" }, "lk", "<Esc>", { silent = true })
