@@ -22,6 +22,9 @@ vim.keymap.set("n", "<leader>nd", function()
   end
 end, { silent = true, desc = "[N]ote [D]aily" })
 
+-- Markdown Preview
+vim.keymap.set("n", "<leader>mp", vim.cmd.MarkdownPreviewToggle, { silent = true, desc = "[M]arkdown [P]review" })
+
 -- Notes review remaps
 -- Open all notes in the ram folder
 vim.keymap.set("n", "<leader>nr", ":args ram/*<CR>", { silent = true, desc = "[N]otes [R]eview" })
