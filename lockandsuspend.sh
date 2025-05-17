@@ -1,7 +1,7 @@
-i3lock --color 000000
+hyprlock
 sleep 30
 # Check if i3lock is running
-if pgrep -x "i3lock" > /dev/null; then
+if pgrep -x "hyprlock" > /dev/null; then
     echo "Screen is locked."
 		systemctl suspend
 else
