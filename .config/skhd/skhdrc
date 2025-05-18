@@ -30,7 +30,7 @@ alt - m : yabai -m window --toggle zoom-fullscreen
 alt - e : yabai -m space --balance
 
 # toggle window padding
-alt - p : yabai -m space --toggle padding
+alt - b : yabai -m space --toggle padding
 
 # toggle window gap
 alt - g : yabai -m space --toggle gap
