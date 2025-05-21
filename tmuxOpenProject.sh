@@ -8,7 +8,8 @@ elif [ "$session_Name" = "p" ]; then
 	from=personal
 fi
 
-selected=$(basename $(find $HOME/$from -maxdepth 1 -type d -print | fzf))
+# the find command lists all the directories and symlinks and pipes it to fzf
+selected=$(basename $(find $HOME/$from -maxdepth 1 -type d -o -maxdepth 1 -type l | fzf))
 
 if [[ -z "$selected" ]]; then
 	exit 0
