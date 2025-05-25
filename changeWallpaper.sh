@@ -2,5 +2,9 @@
 
 wallpaper_folder=~/personal/wallpapers/
 wallpaper=$(ls $wallpaper_folder| wofi --show=dmenu)
-echo $wallpaper
+
+if [[ -z "$wallpaper" ]]; then
+	exit 0
+fi
+
 hyprctl hyprpaper reload ,$wallpaper_folder$wallpaper
