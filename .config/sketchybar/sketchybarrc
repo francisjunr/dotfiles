@@ -165,7 +165,7 @@ sketchybar --add item cpu right                                 																
                           background.border_color=$RED       																								\
                           background.color=0x66000000           																						\
                           script='./scripts/cpu.sh'         																						\
-                          update_freq=1
+                          update_freq=5
 
 sketchybar --add item title_proxy right                             \
            --set      title_proxy y_offset=100                      \
