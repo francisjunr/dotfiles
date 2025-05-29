@@ -6,11 +6,8 @@ format = '[js: $version ](bold green)'
 [aws]
 format = '[AWS: ($profile )($region )](bold-blue)'
 
-[git_branch]
-format = '[Branch: ($branch )](red)'
-
-[line_break]
-disabled = false
+# [git_branch]
+# format = '[Branch: ($branch )](red)'
 
 [time]
 time_format = "%T"
