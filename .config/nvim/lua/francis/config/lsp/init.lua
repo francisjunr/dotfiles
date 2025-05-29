@@ -60,7 +60,9 @@ vim.cmd(
 local servers = {
 	-- clangd = {},
 	-- gopls = {},
+	sqlls = {},
 	pyright = {},
+	bashls = {},
 	-- rust_analyzer = {},
 	tsserver = {
 		documentformatting = false,
