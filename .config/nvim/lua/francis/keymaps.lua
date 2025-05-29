@@ -10,8 +10,6 @@
 vim.keymap.set("n", "<leader>gl", ":G log --decorate <CR>", { silent = true, desc = "[G]it [L]og window" })
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set({ "i", "v", "x", "c" }, "lk", "<Esc>", { silent = true })
-vim.keymap.set({ "i", "v", "x", "c" }, "kl", "<Esc>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Remap for dealing with word wrap
