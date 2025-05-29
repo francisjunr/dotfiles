@@ -29,8 +29,8 @@ alt - m : yabai -m window --toggle zoom-fullscreen
 # balance out tree of windows (resize to occupy same area)
 alt - e : yabai -m space --balance
 
-# toggle window padding
-alt - b : yabai -m space --toggle padding
+# toggle sketchy bar
+alt - b : ~/personal/dotfiles/toggleSketchyBar.sh
 
 # toggle window gap
 alt - g : yabai -m space --toggle gap
