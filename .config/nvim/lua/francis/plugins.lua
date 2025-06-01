@@ -193,20 +193,20 @@ require("lazy").setup({
 }, {
   -- get rid of the icons in the lazy menu (:Lazy)
   ui = {
-    icons = {
-      cmd = "",
-      config = "",
-      event = "",
-      ft = "",
-      init = "",
-      keys = "",
-      plugin = "",
-      runtime = "",
-      require = "",
-      source = "",
-      start = "",
-      task = "",
-      lazy = "",
+		icons = vim.g.have_nerd_font and {} or {
+      cmd = '⌘',
+      config = '🛠',
+      event = '📅',
+      ft = '📂',
+      init = '⚙',
+      keys = '🗝',
+      plugin = '🔌',
+      runtime = '💻',
+      require = '🌙',
+      source = '📄',
+      start = '🚀',
+      task = '📌',
+      lazy = '💤',
     },
   },
 })
