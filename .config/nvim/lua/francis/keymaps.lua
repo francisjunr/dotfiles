@@ -45,9 +45,6 @@ vim.keymap.set(
 -- Open vim fugitive (git plugin)
 -- vim.keymap.set("n", "<leader>gs", ":Git<Cr>", { noremap = true, silent = true, desc = "[g]it overview" })
 
---  Paste form the  under-score register
-vim.keymap.set("v", "<leader>p", '"_dP', { noremap = true, desc = "[P]aste from the under-score register" })
-
 -- Better window navigation
 vim.keymap.set("n", "<C-c>", "<C-w>c", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-h>", vim.cmd.TmuxNavigateLeft, { noremap = true, silent = true })
