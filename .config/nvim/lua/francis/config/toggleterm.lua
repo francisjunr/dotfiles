@@ -31,8 +31,6 @@ toggleterm.setup({
 function _G.set_terminal_keymaps()
 	local opts = { noremap = true, buffer = 0 }
 	vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-	vim.keymap.set("t", "lk", [[<C-\><C-n>]], opts)
-	vim.keymap.set("t", "kl", [[<C-\><C-n>]], opts)
 	vim.keymap.set("n", "<C-h>", vim.cmd.TmuxNavigateLeft, opts)
 	vim.keymap.set("n", "<C-j>", vim.cmd.TmuxNavigateDown, opts)
 	vim.keymap.set("n", "<C-k>", vim.cmd.TmuxNavigateUp, opts)
