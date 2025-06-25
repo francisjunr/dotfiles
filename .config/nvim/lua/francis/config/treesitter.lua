@@ -10,6 +10,7 @@ require("nvim-treesitter.configs").setup({
     "typescript",
     "vim",
     "javascript",
+    "java",
     "graphql",
     "yaml",
     "markdown",
