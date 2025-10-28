@@ -33,9 +33,9 @@ local on_attach = function(_, bufnr)
 	-- format document using lsp
 	vim.keymap.set({ "n", "v" }, "<leader>f", function()
 		vim.lsp.buf.format({
-			-- don't format using tsserver
+			-- don't format using ts_ls
 			filter = function(client)
-				return client.name ~= "tsserver"
+				return client.name ~= "ts_ls"
 			end,
 		})
 	end, { buffer = bufnr, desc = "[F]ormat buffer using lsp" })
@@ -48,7 +48,7 @@ vim.diagnostic.config({
 
 -- auto-format on save
 vim.cmd(
-	[[autocmd BufWritePre * lua vim.lsp.buf.format({ filter = function(client) return client.name ~= "tsserver" end, })]]
+	[[autocmd BufWritePre * lua vim.lsp.buf.format({ filter = function(client) return client.name ~= "ts_ls" end, })]]
 )
 
 -- Show line diagnostics automatically in hover window
@@ -58,14 +58,14 @@ vim.cmd(
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-	clangd = {},
+	-- clangd = {},
 	-- gopls = {},
 	pyright = {},
 	-- rust_analyzer = {},
-	tsserver = {
+	ts_ls = {
 		documentformatting = false,
 		diagnostics = {
-			-- remove unused variable diagnostic messages from tsserver
+			-- remove unused variable diagnostic messages from ts_ls
 			ignoredCodes = { 6133 },
 		},
 	},
@@ -81,6 +81,10 @@ local servers = {
 	},
 	lua_ls = {
 		Lua = {
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { "vim" },
+			},
 			workspace = { checkThirdParty = false },
 			telemetry = { enable = false },
 		},
@@ -106,14 +110,16 @@ local mason_lspconfig = require("mason-lspconfig")
 
 mason_lspconfig.setup({
 	ensure_installed = vim.tbl_keys(servers),
-})
-
-mason_lspconfig.setup_handlers({
-	function(server_name)
-		require("lspconfig")[server_name].setup({
+	handlers = function(server_name)
+		print("server_name", server_name)
+		vim.lsp.config(server_name, {
+			-- Server-specific settings. See `:help lsp-quickstart`
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = servers[server_name],
+			root_dir = function(_)
+				return vim.loop.cwd()
+			end,
 		})
-	end,
+	end
 })

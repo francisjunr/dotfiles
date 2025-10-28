@@ -11,9 +11,8 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup({
   debug = true,
   sources = {
-    formatting.standardjs,
-    diagnostics.standardjs,
+    require("none-ls.diagnostics.eslint"),
     -- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote", "spaceBeforeFunctionParen" } }),
-    formatting.stylua,
+    null_ls.builtins.formatting.stylua,
   },
 })

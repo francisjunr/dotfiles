@@ -80,8 +80,16 @@ require("lazy").setup({
       "folke/neodev.nvim",
     },
   },
-  { -- null ls is for code formatting and linting
-    "jose-elias-alvarez/null-ls.nvim",
+
+  -- { -- null ls is for code formatting and linting
+  --   "jose-elias-alvarez/null-ls.nvim",
+  -- },
+
+  { -- none ls is a drop in replacement for null ls
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim"
+    }
   },
 
   {
