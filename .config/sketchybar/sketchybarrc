@@ -5,9 +5,10 @@ RED=0xFFCE3A5B
 GREEN=0xFF638989
 
 # main bar & defaults
-sketchybar --bar height=36        \
+sketchybar --bar height=25       \
                  margin=12        \
-                 y_offset=0       \
+                 y_offset=2       \
+                 padding_top=0   \
                  padding_left=0   \
                  padding_right=0  \
                  color=0x00000000
@@ -39,6 +40,15 @@ do
                               click_script="yabai -m space --focus $sid"
 done
 
+# create new space button
+sketchybar --add item new_space left                        \
+           --set      new_space icon.width=24               \
+                                label.padding_right=2       \
+                                icon.align=center           \
+                                icon.padding_right=2        \
+                                icon=+                      \
+                                click_script='./scripts/new_space.sh'
+
 # consolidate space numbers and add a background
 sketchybar --add bracket spaces '/space\..*/' new_space                \
            --set         spaces background.color=0x66000000            \
@@ -51,7 +61,7 @@ sketchybar --add bracket spaces '/space\..*/' new_space                \
 # add space highlighter dot
 sketchybar --add item highlight_space left                      \
            --set      highlight_space width=22                  \
-                                      background.color=0x99999999    \
+                                      background.color=$PINK    \
                                       background.height=22      \
                                       background.corner_radius=11 \
                                       script='./scripts/highlight_space.sh'
@@ -76,12 +86,12 @@ done
 sketchybar --set space_ex.1 padding_left=-999999
 
 # arrow icon
-sketchybar --add item arrow left                           \
-           --set      arrow icon=" "                      \
-                            icon.color=0x990000000         \
-													  icon.padding_left=20   				 \
-													  label.color=0xEB1e1e2e         \
-													  padding_left =20               \
+# sketchybar --add item arrow left                           \
+#            --set      arrow icon=" "                      \
+#                             icon.color=0x990000000         \
+# 													  icon.padding_left=20   				 \
+# 													  label.color=0xEB1e1e2e         \
+# 													  padding_left =20               \
 
 # update defaults
 sketchybar --default                                                \
@@ -97,14 +107,15 @@ sketchybar --default                                                \
                      background.border_width=1
 
 
+# ~~ center items ~~
+
 # app title
 sketchybar --add event title_change
-sketchybar --add item title left                                 						  \
+sketchybar --add item title center                                 						  \
            --set      title label="Title"                        					    \
-														label.padding_left=0 															\
-														icon.padding_left=0	 														  \
-														label.color=0x990000000  															  \
-														background.color=0x000000000											\
+														icon.padding_left=4	 														  \
+														label.color=0xfffffffff  															  \
+														background.color=0x66000000											\
                             script='./scripts/title.sh'             					\
                             update_freq=1                           					\
                             label.max_chars=54                      #\
@@ -119,18 +130,18 @@ sketchybar --subscribe title title_change
 # time
 sketchybar --add item time right                                    \
            --set      time icon=󱑎                                   \
-                           icon.color=$BLUE                         \
-                           background.border_color=$BLUE            \
+                           icon.color=$RED                          \
+                           background.border_color=$RED             \
                            background.color=0x66000000              \
                            label="$(date '+%I:%M %p')"              \
                            script='./scripts/time.sh'               \
-                           update_freq=1
+                           update_freq=60
 
 # date
 sketchybar --add item date right                                    \
            --set      date icon=󱨰                                   \
-                           icon.color=$GREEN                        \
-                           background.border_color=$GREEN            \
+                           icon.color=$RED                          \
+                           background.border_color=$GREEN           \
                            background.color=0x66000000              \
                            label="$(date '+%a %b %d')"              \
                            script='./scripts/date.sh'               \
