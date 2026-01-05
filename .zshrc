@@ -21,3 +21,5 @@ source <(fzf --zsh)
 
 # Auto-completion for zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
