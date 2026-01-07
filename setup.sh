@@ -91,6 +91,9 @@ brew install asmvik/formulae/skhd && skhd --start-service
 echo "installing and starting yabai"
 brew install asmvik/formulae/yabai && yabai --start-services
 
+echo "installing yazi"
+brew install yazi
+
 echo "BUILDING NVIM FROM SOURCE"
 
 mkdir build
