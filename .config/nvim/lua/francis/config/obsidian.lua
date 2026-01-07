@@ -13,7 +13,7 @@ obsidian.setup({
   workspaces = {
     {
       name = "notes",
-      path = "/Users/francisjr/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes",
+      path = "/Users/amalbfrancis/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes",
     },
     {
       name = "no-vault",
