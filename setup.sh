@@ -6,6 +6,9 @@ defaults write com.apple.dock persistent-apps -array && defaults write com.apple
 # autohide dock
 defaults write com.apple.dock autohide -bool true && killall Dock
 
+# disable automatic rearranging of spaces based on recent usage
+defaults write com.apple.dock "mru-spaces" -bool "false" && killall Dock
+
 # remove the last login message from terminal sessions
 touch ~/.hushlogin
 
