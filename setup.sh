@@ -53,6 +53,9 @@ brew install --cask obsidian
 echo "installing slack"
 brew install --cask slack
 
+echo "installing microsoft teams"
+brew install --cask microsoft-teams
+
 echo "installing todoist"
 brew install --cask todoist-app
 
@@ -97,6 +100,16 @@ brew install asmvik/formulae/yabai && yabai --start-services
 echo "installing yazi"
 brew install yazi
 
+echo "installing aws cli"
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
+# update the shebang line in the install script to use python 3 instead of just python 
+sed -i '' '1s/$/3/' awscli-bundle/install
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
+echo "installing serverless framework"
+npm install -g serverless@3.38
+
 echo "BUILDING NVIM FROM SOURCE"
 
 mkdir build
@@ -119,5 +132,9 @@ echo "POST SETUP STEPS"
 
 echo "1. Add the following public ssh key to work github account"
 cat ~/.ssh/id_ed25519.pub
+
+echo "2. run aws configure to setup credentials for local deployments"
+
+echo "3. Find your export credentials bash script from slack and copy it into ~/work/"
 
 echo "Your Mac is all set to go, now get to work"
