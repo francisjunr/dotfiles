@@ -22,13 +22,25 @@ cd personal
 git clone https://github.com/francisjunr/dotfiles.git
 
 echo "copying configs files to respective locations"
+touch ~/.zshrc
 cp dotfiles/.zshrc ~/.zshrc
+
+touch ~/.tmux.conf
 cp ~/personal/dotfiles/.tmux.conf ~/.tmux.conf
+
+mkdir ~/.config
+
+mkdir ~/.config/kitty
+touch ~/.config/kitty/kitty.conf
 cp ~/personal/dotfiles/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
+
+mkdir ~/.config/skhd
+touch ~/.config/skhd/skhd.rc
 cp ~/personal/dotfiles/.config/skhd/skhdrc ~/.config/skhd/skhdrc
 
-mkdir -p "$HOME/Library/Application Support/org.pqrs/config"
-cp ~/personal/dotfiles/.config/karabiner "$HOME/Library/Application Support/org.pqrs/config"
+mkdir ~/.config/karabiner
+touch ~/.config/karabiner/karabiner.json
+cp ~/personal/dotfiles/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
 
 echo "installing homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
