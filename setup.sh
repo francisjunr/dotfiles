@@ -42,6 +42,14 @@ mkdir ~/.config/karabiner
 touch ~/.config/karabiner/karabiner.json
 cp ~/personal/dotfiles/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
 
+mkdir ~/.config/sketchybar
+mkdir ~/.config/sketchybar/scripts/
+touch ~/.config/sketchybar/sketchybarrc
+cp -r ~/personal/dotfiles/.config/sketchybar/scripts/ ~/.config/sketchybar/scripts/
+cp -r ~/personal/dotfiles/.config/sketchybar/sketchybarrc ~/.config/sketchybar/sketchybarrc
+chmod +x ~/personal/dotfiles/.config/sketchybar/sketchybarrc
+chmod +x ~/personal/dotfiles/.config/sketchybar/scripts/*
+
 echo "installing homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -76,6 +84,10 @@ brew install --cask foobar2000
 
 echo "installing karabiner elements"
 brew install --cask karabiner-elements
+
+brew tap FelixKratz/formulae
+brew install sketchybar
+brew services start felixkratz/formulae/sketchybar
 
 echo "installing jankyborders"
 brew tap FelixKratz/formulae
